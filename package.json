@@ -1,0 +1,17 @@
+{
+  "name": "clojurescript-generative-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "shadow-cljs watch app"
+  },
+  "author": "mjul",
+  "license": "MIT",
+  "keywords": [
+    "ClojureScript"
+  ],
+  "description": "Generative testing with clojure.spec",
+  "devDependencies": {
+    "shadow-cljs": "^2.11.5"
+  }
+}

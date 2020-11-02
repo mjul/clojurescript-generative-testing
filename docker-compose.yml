@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "8021:8021" # the test runner
+      - "9630:9630" # the shadow-cljs server
+      - "8777:8777" # the REPL
+    # Mount the src and test folders so we can edit the code on the host
+    volumes:
+      - "./src:/home/node/app/src"
+      - "./test:/home/node/app/test"
+    command:
+      npx shadow-cljs watch test
+
+      
