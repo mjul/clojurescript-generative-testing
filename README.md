@@ -24,9 +24,37 @@ The `check` macro suffers from this.
 
 Here are some common errors.
 
-## Namespace aliasing does not work
+## Namespace aliasing does not work with `check`
 Yes, that is right.
 See the [core_test.cljs](./test/cljs/generative/core_test.cljs) file for details.
+
+```clojure
+(ns generative.core-test
+  (:require
+   [generative.core :as c]
+   [clojure.test :refer-macros [deftest testing is are]]
+   [clojure.test.check]
+   [clojure.test.check.properties]
+   [cljs.spec.alpha :as s]
+   [cljs.spec.test.alpha :as stest :refer-macros [instrument check]]))
+
+;; details elided
+ 
+    (testing "We can call check on a namespace (using the alias)"
+      (is (check (stest/enumerate-namespace 'generative.core))))
+```
+
+Here the `check` macro throws up on the aliased namespace and you will see this:
+
+```
+
+        Encountered error when macroexpanding cljs.spec.test.alpha/check.
+        Error in phase :compile-syntax-check
+        RuntimeException: No such namespace: stest
+```
+
+The workaround is to use fully qualified namespaces instead of aliases.
+
 
 
 ## Require clojure.test.check and clojure.test.check.properties
