@@ -65,8 +65,8 @@ I have not been able to find the root cause of this error:
         Error: Require clojure.test.check and clojure.test.check.properties before calling check.
 ```
 
-I cannot reproduce it in small, new, toy projects, however, it does appear in some bigger projects I am working on.
 
-If you have any ideas, please let know how to fix it.
+I cannot reproduce it in small, new, toy projects, however, it does appear in some bigger projects.
 
-
+One workaround seems to be to delete the `.m2` Maven repository, `node_modules` and `package-lock.json` and
+run `npm install` to renew the NPM modules and the Java-siden packages when Shadow CLJS runs again.
